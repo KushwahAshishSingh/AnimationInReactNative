@@ -9,7 +9,7 @@ import {
 } from "react-native";
 const { height, width } = Dimensions.get("window");
 
-export default class App extends Component {
+export default class ScrollSwagger extends Component {
     constructor(props) {
         super(props);
         const ds = new ListView.DataSource({
@@ -18,8 +18,18 @@ export default class App extends Component {
         this.state = {
             scrollY: new Animated.Value(0),
             dataSource: ds.cloneWithRows([
-               
-
+                "Dummy",
+                "data",
+                "Dummy",
+                "data",
+                "Dummy",
+                "data",
+                "Dummy",
+                "data",
+                "Dummy",
+                "data",
+                "Dummy",
+                "data"
             ])
         };
     }
@@ -69,30 +79,6 @@ export default class App extends Component {
             inputRange: [0, 100],
             outputRange: ["0deg", "360deg"]
         });
-
-
-        var MovingObj = ()=>{
-            <Animated.View
-                style={{
-                    top: -height + 100,
-                    zIndex: 2,
-                    justifyContent: "center",
-                    alignItems: "center",
-                    backgroundColor: "yellow",
-                    width: 100,
-                    alignSelf: "center",
-                    transform: [
-                        { translateY: hamovY },
-                        { translateX: hamovX },
-                        { rotate: harot }
-                    ]
-                }}
-            >
-                <Text style={{ fontWeight: "bold", fontSize: 20, color: "red" }}>
-                    Hahaha
-                </Text>
-            </Animated.View>
-        }
         return (
             <View style={{ flex: 1 }}>
                 <ListView
@@ -110,8 +96,8 @@ export default class App extends Component {
                         width: 100,
                         alignSelf: "center",
                         transform: [
-                           // { translateY: hamovY },
-                           // { translateX: hamovX },
+                            { translateY: hamovY },
+                            { translateX: hamovX },
                             { rotate: harot }
                         ]
                     }}
@@ -120,7 +106,26 @@ export default class App extends Component {
                         Hahaha
                     </Text>
                 </Animated.View>
-                          </View>
+                <Animated.View
+                    style={{
+                        position: "absolute",
+                        height: 250,
+                        width: width,
+                        top: 0,
+                        backgroundColor: headColor,
+                        justifyContent: "flex-end",
+                        flexDirection: "column",
+                        transform: [{ translateY: headMov }]
+                    }}
+                >
+                    <Animated.Image
+                        source={{
+                            uri: "https://images.alphacoders.com/371/thumb-1920-371.jpg"
+                        }}
+                        style={{ bottom: 0, width: width, height: 250, opacity: imgOp }}
+                    />
+                </Animated.View>
+            </View>
         );
     }
     _handleScroll(e) {
